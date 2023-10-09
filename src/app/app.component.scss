@@ -1,0 +1,14 @@
+* {
+    transition: 1s all;
+  }
+
+  
+input[type=checkbox]:checked + label #a {
+	background-color: #f4e94e;
+	margin-left: calc(100% - 20px);
+	box-shadow: 0 0 100px rgba(249, 240, 104,1); 
+}
+
+input[type=checkbox]:checked + label #a * {
+	opacity: 0;
+}
