@@ -1,22 +1,112 @@
-<div class="bg-white dark:bg-regal-blue min-h-screen min-w-full">
-  <div class="container mx-auto p-4">
-    <h1 class="text-2xl font-semibold mb-4 text-gray-800 dark:text-white">Angular Dark Mode Toggle</h1>
-    <!-- <app-dark-mode-toggle></app-dark-mode-toggle> -->
-    <!-- Add the rest of your content here -->
-  
-    <!-- <button 
-      (click)="darkMode.set(!darkMode())"
-      class="bg-gray-300 dark:bg-gray-700 px-4 py-2 rounded-md text-white dark:text-gray-200">
-      <span *ngIf="!darkMode()">Dark</span>
-      <span *ngIf="darkMode()">Light</span>
-    </button> -->
-    
+<div class="bg-white dark:bg-regal-blue min-h-screen min-w-full px-10">
+  <!-- Theme: DarkMode -->
+  <div class="container mx-auto p-4 flex items-center justify-end gap-2">
+    <p class="font-semibold text-gray-800 dark:text-white">Theme: </p>
     <input (click)="darkMode.set(!darkMode())" type="checkbox" id="c" class="hidden" />
     <label for="c" class="bg-slate-950 rounded-full block p-2 w-20 h-15 z-10 cursor-pointer">
-      <div id="a" class=" rounded-full h-5 w-5 bg-gray-100 shadow-[0_0_100px_rgba(255,255,255,1)]">
-      </div>
+        <div id="a" class=" rounded-full h-5 w-5 bg-gray-100 shadow-[0_0_100px_rgba(255,255,255,1)]">
+        </div>
     </label>
   </div>
+  <!-- Header Content -->
+  <div class="container mx-auto mb-10">
+    <h1 class="text-4xl py-5 text-gray-800 dark:text-white">Gordon Growth Model Calculator</h1>
+    <p class="font-mada text-gray-800 dark:text-white">
+      The Gordon Growth Model, also known as the Gordon-Shapiro Model or the Dividend Discount Model (DDM), is a simple way to estimate the value of a stock based on its expected future dividends.
+    </p>
+  </div>
+
+  <div class="container grid mx-auto lg:gap-28 gap-5 lg:grid-cols-2 lg:grid-rows-2">
+    <form>
+      <!-- Expected Dividend -->
+      <div class="row-span-2 flex flex-col py-5">
+        <label for="expectedDividend" class="font-mada text-gray-800 dark:text-white text-lg">Expected Dividend</label>
+        <input type="number" name="expectedDividend" class="rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900 text-right"/>
+      </div>
+      <!-- Discount Rate & Growth Rate -->
+      <div class="-mx-3 flex flex-wrap pt-5">
+        <div class="w-full px-3 sm:w-1/2">
+          <div class="mb-5">
+            <label
+              for="discountRate"
+              class="block font-mada text-gray-800 dark:text-white text-lg"
+            >
+            Discount Rate
+            </label>
+            <input
+              type="number"
+              name="discountRate"
+              class="w-full rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900  text-right"
+            />
+          </div>
+        </div>
+        <div class="w-full px-3 sm:w-1/2">
+          <div class="mb-5">
+            <label
+              for="growthRate"
+              class="block font-mada text-gray-800 dark:text-white text-lg"
+            >
+            Growth Rate
+            </label>
+            <input
+              type="number"
+              name="growthRate"
+              class="w-full rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900  text-right"
+            />
+          </div>
+        </div>
+      </div>
+      <!-- Stock Value -->
+      <div class="row-span-2 flex flex-col py-5">
+        <label for="stockValue" class="font-mada text-gray-800 dark:text-white text-lg">Stock Value</label>
+        <input type="number" name="stockValue" class=" rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900 text-right" disabled [value]="stockValue"/>
+      </div>
+      <!-- Buttons -->
+      <div class="grid grid-flow-col justify-stretch gap-5 pt-10">
+        <button
+          class="hover:shadow-form rounded-md bg-slate-400 py-3 text-center text-base font-semibold text-white outline-none"
+        >
+          RESET
+        </button>
+        <button
+          class="hover:shadow-form rounded-md bg-rose-700 py-3 text-center text-base font-semibold text-white outline-none"
+        >
+          CALCULATE
+        </button>
+      </div>
+    </form>
+
+
+
+    <div class="row-span-2 flex flex-col py-5">
+        <h1 class="text-lg mb-5 text-gray-800 dark:text-white">How it works:</h1>
+
+          <section class="my-5">
+            <h1 class="leading-loose text-gray-800 dark:text-white">Inputs:</h1>
+            <ul class="list-disc ml-10 leading-loose ">
+              <li class="font-mada text-gray-800 dark:text-white"><span class="text-gray-800 dark:text-white">Expected dividend:</span> annual dividend estimated based on past performance.</li>
+              <li class="font-mada text-gray-800 dark:text-white"><span class="text-gray-800 dark:text-white">Discount rate:</span> rate of return investors expect from stock, taking into account its risk.</li>
+              <li class="font-mada text-gray-800 dark:text-white"><span class="text-gray-800 dark:text-white">Growth rate:</span> estimated long-term growth rate of the company&rsquo;s dividends based on historical rates or industry benchmarks.</li>
+            </ul>
+          </section>
+
+          <section class="my-5">
+            <h1 class="leading-loose text-gray-800 dark:text-white">Formula:</h1>
+            <p class="ml-10 text-gray-800 dark:text-white">Stock Value = Expected Dividend / (Discount Rate - Growth Rate)</p>
+          </section>
+
+          <section class="my-5">
+            <h1 class="leading-loose text-gray-800 dark:text-white">Output:</h1>
+            <p class="text-gray-800 dark:text-white ml-10 font-mada">Estimated value of the stock based on projected future dividends.</p>
+          </section>
+
+          <section class="my-5">
+            <h1 class="leading-loose text-gray-800 dark:text-white">Note:</h1>
+            <p class="text-gray-800 dark:text-white ml-10 font-mada">This model has simplifying assumptions and may not always accurately reflect a stock&rsquo;s true value, but is useful for mature companies with stable dividend histories. Compare calculated stock value with market price to determine potential undervalued or overvalued stocks.</p>
+          </section>
+    </div>
+  </div>
+
 </div>
 
 

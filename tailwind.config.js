@@ -7,6 +7,7 @@ module.exports = {
   theme: {
     fontFamily:{
       mada: "'Mada', sans-serif",
+      orbitron: "'Orbitron', sans-serif",
     },
     extend: {
       colors: {

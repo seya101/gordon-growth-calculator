@@ -10,6 +10,8 @@ export class AppComponent {
     JSON.parse(window.localStorage.getItem('darkMode') ?? 'false')
   );
 
+  stockValue: number = 0;
+
   @HostBinding('class.dark') get mode() {
     return this.darkMode();
   }
