@@ -15,13 +15,22 @@
       The Gordon Growth Model, also known as the Gordon-Shapiro Model or the Dividend Discount Model (DDM), is a simple way to estimate the value of a stock based on its expected future dividends.
     </p>
   </div>
-
-  <div class="container grid mx-auto lg:gap-28 gap-5 lg:grid-cols-2 lg:grid-rows-2">
-    <form>
+  <!-- Body Content -->
+  <div class="container grid mx-auto lg:gap-28 gap-5 lg:grid-cols-2">
+    <form [formGroup]="calculatorForm" (ngSubmit)="onSubmit()">
       <!-- Expected Dividend -->
       <div class="row-span-2 flex flex-col py-5">
         <label for="expectedDividend" class="font-mada text-gray-800 dark:text-white text-lg">Expected Dividend</label>
-        <input type="number" name="expectedDividend" class="rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900 text-right"/>
+        <input
+          type="number"
+          name="expectedDividend"
+          class="rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900 text-right" 
+          formControlName="expectedDividend"/>
+          <p
+            *ngIf="isSubmitted && calculatorForm.get('expectedDividend')?.hasError('required')"
+            class="text-rose-400 font-mada text-sm my-2 tracking-wide">
+            Expected Dividend is Required 
+          </p>
       </div>
       <!-- Discount Rate & Growth Rate -->
       <div class="-mx-3 flex flex-wrap pt-5">
@@ -31,13 +40,24 @@
               for="discountRate"
               class="block font-mada text-gray-800 dark:text-white text-lg"
             >
-            Discount Rate
+            Discount Rate (%)
             </label>
             <input
               type="number"
               name="discountRate"
               class="w-full rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900  text-right"
+              formControlName="discountRate"
             />
+            <p
+              *ngIf="isSubmitted && calculatorForm.get('discountRate')?.hasError('required')"
+              class="text-rose-400 font-mada text-sm my-2 tracking-wide">
+              Discount Rate is Required 
+            </p>
+            <p
+              *ngIf="isSubmitted && calculatorForm.get('discountRate')?.value != null && calculatorForm.get('discountRate')?.value <= calculatorForm.get('growthRate')?.value"
+              class="text-rose-400 font-mada text-sm my-2 tracking-wide">
+              Discount Rate must be greater than Growth Rate
+            </p>
           </div>
         </div>
         <div class="w-full px-3 sm:w-1/2">
@@ -46,37 +66,49 @@
               for="growthRate"
               class="block font-mada text-gray-800 dark:text-white text-lg"
             >
-            Growth Rate
+            Growth Rate (%)
             </label>
             <input
               type="number"
               name="growthRate"
               class="w-full rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900  text-right"
+              formControlName="growthRate"
             />
+            <p
+              *ngIf="isSubmitted && calculatorForm.get('growthRate')?.hasError('required')"
+              class="text-rose-400 font-mada text-sm my-2 tracking-wide">
+              Growth Rate is Required 
+            </p>
           </div>
         </div>
       </div>
       <!-- Stock Value -->
       <div class="row-span-2 flex flex-col py-5">
         <label for="stockValue" class="font-mada text-gray-800 dark:text-white text-lg">Stock Value</label>
-        <input type="number" name="stockValue" class=" rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900 text-right" disabled [value]="stockValue"/>
+        <input
+          type="text"
+          name="stockValue"
+          class="rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900 text-right text-[30px]"
+          disabled
+          [value]="stockValue | numberFormat"
+        />
       </div>
       <!-- Buttons -->
       <div class="grid grid-flow-col justify-stretch gap-5 pt-10">
-        <button
-          class="hover:shadow-form rounded-md bg-slate-400 py-3 text-center text-base font-semibold text-white outline-none"
+        <a
+          (click)="onReset()"
+          class="cursor-pointer hover:shadow-form rounded-md bg-slate-400 py-3 text-center text-base font-semibold text-white outline-none"
         >
           RESET
-        </button>
+        </a>
         <button
           class="hover:shadow-form rounded-md bg-rose-700 py-3 text-center text-base font-semibold text-white outline-none"
+          type="submit"
         >
           CALCULATE
         </button>
       </div>
     </form>
-
-
 
     <div class="row-span-2 flex flex-col py-5">
         <h1 class="text-lg mb-5 text-gray-800 dark:text-white">How it works:</h1>
@@ -106,6 +138,21 @@
           </section>
     </div>
   </div>
+
+
+  <footer class="mt-20">
+    <div class="w-full mx-auto p-4 flex items-center justify-center">
+      <span class="text-sm text-gray-500 text-center dark:text-gray-400">
+        ©2023 Created by Hosea Corpuz
+      </span>
+      <a href="https://www.buymeacoffee.com/hoseacorpuz" target="_blank" rel="noopener noreferrer" class="ml-1">
+        <img src="../assets/img/buymeacoffee-logo.svg" alt="Buy Me a Coffee" width="20" height="20">
+      </a>
+    </div>
+  </footer>
+  
+  
+  
 
 </div>
 
