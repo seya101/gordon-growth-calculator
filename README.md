@@ -10,5 +10,5 @@ Gordon Growth Model (GGM) is used to estimate the true value of a stock. This es
 
 
 ## UI
-![](./screenshot-dark.png)
-![](./screenshot-light.png)
+![](./screenshot-dark.PNG)
+![](./screenshot-light.PNG)
