@@ -16,7 +16,7 @@
     </p>
   </div>
   <!-- Body Content -->
-  <div class="container grid mx-auto lg:gap-28 gap-5 lg:grid-cols-2">
+  <div class=" grid mx-auto lg:gap-28 gap-5 lg:grid-cols-2">
     <form [formGroup]="calculatorForm" (ngSubmit)="onSubmit()">
       <!-- Expected Dividend -->
       <div class="row-span-2 flex flex-col py-5">
@@ -24,7 +24,7 @@
         <input
           type="number"
           name="expectedDividend"
-          class="rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900 text-right" 
+          class="rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900 text-right w-full" 
           formControlName="expectedDividend"/>
           <p
             *ngIf="isSubmitted && calculatorForm.get('expectedDividend')?.hasError('required')"
@@ -45,7 +45,7 @@
             <input
               type="number"
               name="discountRate"
-              class="w-full rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900  text-right"
+              class="rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900 text-right w-full"
               formControlName="discountRate"
             />
             <p
@@ -71,7 +71,7 @@
             <input
               type="number"
               name="growthRate"
-              class="w-full rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900  text-right"
+              class="rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900 text-right w-full"
               formControlName="growthRate"
             />
             <p
@@ -88,8 +88,8 @@
         <input
           type="text"
           name="stockValue"
-          class="rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900 text-right text-[30px]"
-          disabled
+          class="rounded-md p-4 bg-gray-200 text-gray-800 dark:text-white dark:bg-slate-900 text-right md:text-[30px] w-full"
+          
           [value]="stockValue | numberFormat"
         />
       </div>
@@ -150,9 +150,6 @@
       </a>
     </div>
   </footer>
-  
-  
-  
 
 </div>
 
